@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr-Ca">
+<head>
+    <meta charset="UTF-8">
+    <!-- Ajustement de la taille du viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Chargement des fichiers CSS-->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/stylesAnimations.css" />
+
+    <!-- Police d'icônes -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Titre de l'onglet -->
+    <title>Mega Quiz Fruité</title>
+</head>
+<body>
+
+    <!-- Curseur Personalisé -->
+    <div class="curseur"></div>
+
+    <!-- Menu Options -->
+    <span class="material-icons" id="roue">settings</span>
+    <div class="menuDeroulant">
+        <div class="theme bleuet"></div>
+        <div class="theme orange"></div>
+        <div class="theme melon"></div>
+    </div>
+
+    <!-- Pour adoucir les transitions de couleur -->
+    <div class="couleur"></div>
+    
+    <!-- Les sections du quiz -->
+    <main class="intro">
+        <!-- Les lettres "QUIZ" sont créées dynamiquement pour une animation -->
+        <div class="titre">Mega&nbsp;</div>
+        <!-- image originale -->
+        <img src="images/assiette.png" alt="image fruits">
+        <div class="instructions"></div>
+    </main>
+    <main class="quiz">
+        <div class="enonceQuestion"></div>
+        <div class="barreProgres"></div>
+        <div class="choixReponses"></div>
+        <div class="informations"></div>
+    </main>
+    <main class="outro">
+        <div class="score">
+            <p>Score :</p>
+        </div>
+        <div class="meilleurScore"></div>
+        <div class="btnRejouer">
+            <span class="material-icons" id="rejouer">replay</span>
+        </div>
+    </main>
+    <!-- Chargement des scripts -->
+    <script src="js/banqueQuestions.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>

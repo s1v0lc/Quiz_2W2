@@ -1,0 +1,435 @@
+
+/* Feuille de style TP2 web */
+
+/*  
+    Auteur: Clovis Gauthier
+    Remise: Jeudi 18 mai 2023 
+    Cours: Animation et Interactivité Web (2W2)
+*/
+/* Normalisation supplémentaire*/
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+/* Variables personnalisées pour les couleurs*/
+:root {
+    --gris: #746f6f;
+    --grisPale: rgb(197, 195, 195);
+    --grisFonce: rgb(75, 75, 75);
+    /* couleurs thème orange*/
+    --orangeFonce: #f34d00;
+    --orange: #c97017;
+    /* couleurs thème melon*/
+    --rouge: #c10000;
+    --vert: rgb(1, 125, 11);
+    /* couleurs thème bleuet*/
+    --bleuPale: rgb(54, 114, 233);
+    --bleuFonce: rgb(13, 92, 188);
+    /* Couleur thème par défaut */
+    --couleurPrincipale: var(--orangeFonce);
+    --couleurSecondaire: var(--gris);
+}
+/* Importation des polices */
+@font-face {
+    font-family: BrunoAce;
+    src: url(../polices/BrunoAceSC-Regular.ttf);
+}
+@font-face {
+    font-family: NotoSansSiddham;
+    src: url(../polices/NotoSansSiddham-Regular.ttf);
+}
+/* MISE EN PAGE */
+html,body{
+    /* min-width: 375px; */
+    /* min-height: 650px; */
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.couleur { /*Div colorée qui adoucit la transition*/
+    z-index: 1;
+    position: absolute;
+    top: 30vh;
+    height: 70%;
+    width: 100%;
+    background-color: var(--couleurPrincipale);
+}
+
+body {
+    background-color: var(--couleurPrincipale);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--gris);
+}
+
+main {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--couleurPrincipale);
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+}
+/* MENU OPTIONS */
+#roue {
+    /* display: flex; */
+    z-index: 15;
+    position: absolute;
+    scale: 125%;
+    right: 4vw;
+    top: 1.35rem;
+}
+
+.menuDeroulant {
+    pointer-events: none;
+    position: absolute;
+    overflow: hidden;
+    z-index: 14;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center ;
+    padding-left: 4%;
+    padding-top: 1.5%;
+    column-gap: 3vw;
+    width: 50vw;
+    height: 3rem;
+    border-radius: 50px;
+    right: -38vw;
+    top: 0.5rem;
+    background-color: var(--grisFonce);
+}
+/* Icônes du menu */
+.theme {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 25px;
+    height: 30px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.bleuet {
+    background-image: url(../images/curseurBleuet.png);
+}
+
+.orange {
+    background-image: url(../images/curseurOrange.png);
+    translate: 0 -3px;
+}
+
+.melon {
+    background-image: url(../images/curseurMelon.png);
+}
+
+/* INTRO */
+.titre {
+    height: 80%;
+    font-size: 2.5rem;
+    font-family: BrunoAce;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: 50% 50%;
+}
+
+.instructions {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--couleurSecondaire);
+    color: white;
+    font-size: clamp(0.5rem, 0.5rem + 1vw ,0.8rem);
+}
+
+.bienvenue::before {
+    content: "Bienvenue au";
+    position: absolute;
+    left: 15vw;
+    top: 30%;
+    font-size: 1rem;
+}
+
+.bienvenue::after {
+    content: "des Fruits";
+    position: absolute;
+    right: 20vw;
+    bottom: 50%;
+    font-size: 1rem;
+}
+
+img {
+    width: fit-content;
+    height: clamp(4rem, 4rem + 20vh, 13rem);
+    top: 58%;
+    color: black;
+    position: absolute;
+    /* modifié par animation */
+    opacity: 0;
+}
+/* QUIZ */
+.quiz {
+    display: none;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.enonceQuestion, .choixReponses {
+    background-color: var(--couleurSecondaire);
+    height: 30vh;
+    width: 100vw;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: BrunoAce;
+}
+
+.enonceQuestion {
+    font-size: 1.5rem;
+}
+
+.choixReponses { /*Choix de réponses générés dynamiquement*/
+    pointer-events: none;
+    justify-content: space-around;
+    background-color: var(--couleurPrincipale);
+    height: 70vh;
+    font-size: 2rem;
+}
+
+.choix { /*Div dans laquelle les choix sont créé*/
+    pointer-events: all;
+    background-color: var(--couleurSecondaire);
+    width: fit-content;
+    padding: 0.8rem;
+    border: 2px solid white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px #eee;
+    transition: border-radius 0.5s, border 1s;
+}
+
+.choix:hover {
+    text-decoration: underline;
+    border-radius: 50%;
+}
+
+.barreProgres { /*Fruit sur la barre*/
+    overflow: hidden;
+    position: absolute;
+    z-index: 100;
+    height: 2rem;
+    width: 100vw;
+    left: 0;
+    top: 28vh;
+    right: 0;
+    width: 101vw;
+    background-size: contain;
+    background-position: 4%;
+    translate: -100%;
+}
+
+.barreBleuet {
+    background-image: url(../images/curseurBleuet.png);
+}
+
+.barreOrange {
+    background-image: url(../images/curseurOrange.png);
+    top: 27.5vh;
+    background-position: 9%;
+}
+
+.barreMelon {
+    background-image: url(../images/curseurMelon.png);
+    background-position: 10%;
+}
+
+.informations { /* conteneur*/
+    z-index: 2;
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    width: fit-content;
+    height: 5rem;
+    bottom: 5%;
+    opacity: 0; /*animé*/
+    pointer-events: none;
+}
+/* Tooltip  (pas le temps de finir)*/
+/* .info::after {
+    z-index: 1;
+    content: "";
+    position: absolute;
+    border-left: 20px solid var(--couleurSecondaire);
+    border-top: 20px solid var(--couleurPrincipale);
+    left: 0;
+    right: 90%;
+    top: 0;
+    bottom: 70%;
+    translate: 264.5px 16px;
+}
+.info::before {
+    z-index: 1;
+    content: "";
+    position: absolute;
+    border-right: 20px solid var(--couleurSecondaire);
+    border-top: 20px solid var(--couleurPrincipale);
+    left: 90%;
+    right: 0;
+    top: 75%;
+    bottom: 0;
+    translate: -275px -43px;
+} */
+
+.info { /* contenu */
+    background-color: var(--couleurSecondaire);
+    padding: 0.8rem;
+    border-radius: 25px;
+    text-align: center;
+}
+/* OUTRO */
+.outro {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 5vh; */
+    row-gap: 5vh;
+}
+.score, .meilleurScore, .btnRejouer {
+    background-color: var(--couleurSecondaire);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.score {
+    z-index: 2;
+    width: 60%;
+    height: 15%;
+    row-gap: 1vh;
+}
+
+.meilleurScore {
+    z-index: 2;
+    width: 80%;
+    height: 10%;  
+    padding-left: 10%; 
+    padding-right: 10%;
+    text-align: center;
+}
+
+p {
+    font-size: 2rem;
+    font-family: BrunoAce;
+}
+
+.btnRejouer {
+    z-index: 1;
+    border-radius: 50%;
+    opacity: 0;/* animé */
+    height: 4rem;
+    width: 4rem;
+    transition: box-shadow 0.5s;
+}
+
+.btnRejouer:hover {
+    box-shadow: 0px 0px 10px 1px #eee;
+}
+
+#rejouer {
+    scale: 2;
+    /* Car l'écouteur de click est placé sur la classe btnRejouer */
+    pointer-events: none;
+}
+
+/* REQUÊTES MÉDIAS */
+/* Écrans moyens -- 768px + */
+@media screen and (min-width: 768px) {
+    .choixReponses {
+        flex-direction: row;
+    }
+    #roue {
+        scale: 2;
+        top: 2.5rem;
+    }
+    .menuDeroulant {
+        overflow: hidden;
+        right: vw;
+        height: 5rem;
+        column-gap: 7vw;
+        padding-left: 5vw;
+    }
+    .theme {
+        scale: 1.8;
+    }
+    .titre {
+        font-size: 4rem;
+    }
+    .bienvenue::before {
+        font-size: 2rem;
+        top: 25%;
+    }
+    .bienvenue::after {
+        font-size: 2rem;
+        bottom: 45%;
+    }
+    .enonceQuestion{
+        font-size: 2rem;
+    }
+    .choixReponses {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    .informations {
+        bottom: 15%;
+    }
+    .score {
+        width: 30vw;
+    }
+    .meilleurScore {
+        width: 50vw;
+    }
+}
+/* Grand Écrans -- 1080px + */
+@media screen and (min-width: 1080px) {
+    #roue {
+        scale: 2.5;
+    }
+    .menuDeroulant {
+        right: -42vw;
+        padding-top: 1%;
+    }
+    .theme {
+        scale: 2;
+    }
+    /* ajustement de l'animation du menu */
+    .inactif {
+        animation: animEnroulerMenu1080 1s forwards;
+    }
+    .titre {
+        font-size: 5rem;
+    }
+    .choixReponses {
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    .score {
+        width: 20vw;
+    }
+    .meilleurScore {
+        width: 30vw;
+        padding: 2%;
+    }
+}

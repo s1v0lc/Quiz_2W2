@@ -1,0 +1,303 @@
+
+/* Feuille de style Animations TP2 web */
+
+/*  
+    Auteur: Clovis Gauthier
+    Remise: Jeudi 18 mai 2023 
+    Cours: Animation et Interactivité Web (2W2)
+*/
+
+/* Animation du Menu */
+.actif {
+    animation: animDeroulerMenu 1s forwards;
+}
+@keyframes animDeroulerMenu {
+    from {
+        right: -38vw;
+        background-color: var(--grisFonce);
+    }
+    to {
+        right: -8vw;
+        background-color: var(--grisPale);
+    }
+}
+.inactif {
+    animation: animEnroulerMenu 1s forwards;
+}
+@keyframes animEnroulerMenu {
+    from {
+        right: -8vw;
+        background-color: var(--grisPale);
+    }
+    to {
+        right: -38vw;
+        background-color: var(--grisFonce);
+    }
+}
+@keyframes animEnroulerMenu1080 {
+    from {
+        right: -8vw;
+        background-color: var(--grisPale);
+    }
+    to {
+        right: -42vw;
+        background-color: var(--grisFonce);
+    }
+}
+/* Animation de l'engenage */
+@keyframes animEngrenage {
+    from {
+        rotate: 0;
+    }
+    to {
+        rotate: 1turn;
+    }
+}
+@keyframes animEngrenageReverse {
+    from {
+        rotate: 1turn;
+    }
+    to {
+        rotate: 0;
+    }
+}
+/* Animation du titre */
+.titre {
+animation: animTitre 2s 1 ease-in-out;
+}
+@keyframes animTitre {
+    from {
+        opacity: 0;
+        translate: 0 -80%;
+        rotate: 0;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    to {
+        opacity: 1;
+        translate: 0 0;
+        rotate: 3turn;
+    }
+    
+}
+/* Animation des couleurs du titre */
+.lettre {
+    animation: animCouleurTitre 1s 1 ease-out forwards;
+}
+@keyframes animCouleurTitre {
+    from {
+        color: white;
+    }
+    to {
+        color: #000;
+    }
+}
+/* Fait clignoter les instructions */
+.instructions h2{
+animation: animClignotement 2s infinite alternate ease-in-out;
+}
+/* Fait apparaître les fruits */
+img {
+    animation: animClignotement 2s ease-out 2s 1 forwards ;
+}
+@keyframes animClignotement {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Transition vers quiz */
+.introTransition {
+    animation: transitionVersQuiz 1s ease-in-out forwards;
+}
+@keyframes transitionVersQuiz {
+    from{
+        translate: 0 0vh;
+    }
+    70% {
+        opacity: 1;
+        translate: 0 30vh;
+    }
+    to {
+        opacity: 0;
+        translate: 0 30vh;
+    }
+}
+/* Transition depuis l'intro */
+.quizTransition {
+    animation: transitionDepuisIntro 1s ease-in forwards;
+}
+@keyframes transitionDepuisIntro {
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Anime horizontalement les pseudo-elements du titre */
+.bienvenue::before {
+    animation: animBeforeTitre 0.5s linear forwards;
+}
+@keyframes animBeforeTitre {
+    from {
+        opacity: 0;
+        left: -20vw;
+    }
+    to {
+        opacity: 1;
+        left: 15vw;
+    }
+}
+.bienvenue::after {
+    animation: animAfterTitre 0.5s linear forwards;
+}
+@keyframes animAfterTitre {
+    from {
+        opacity: 0;
+        right: -20vw;
+    }
+    to {
+        opacity: 1;
+        right: 15vw;
+    }
+}
+/* Anime les choix de réponses */
+.choix.bonneReponse {
+    animation: animBonneReponse 1s forwards;
+}
+.choix.mauvaiseReponse {
+    animation: animMauvaiseReponse 1s forwards;
+}
+@keyframes animBonneReponse {
+    from {
+        color: white;
+        border: 2px solid white;
+    }
+    to {
+        color: rgb(8, 188, 8);
+        border: 5px solid rgb(8, 188, 8);
+    }   
+}
+@keyframes animMauvaiseReponse {
+    from {
+        color: white;
+        border: 2px solid white;
+    }
+    to {
+        color: red;
+        border: 5px solid red;
+    }
+}
+/* TransitionEntreQuestions */
+.questionTransition {
+    animation: transitionEntreQuestion 2s ease forwards;
+}
+@keyframes transitionEntreQuestion {
+    from {
+        translate: 0;
+    }
+    10% {
+        translate: 50px;
+    }
+    to {
+        translate: -2000px;
+    }
+}
+.questionTransition2 {
+    animation: transitionEntreQuestion2 1s ease;
+}
+@keyframes transitionEntreQuestion2 {
+    from  {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Affichage de l'information */
+.apparaitreInfos {
+    animation: apparitionInfos 1s forwards;
+}
+@keyframes apparitionInfos {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.disparaitreInfos {
+    animation: retraitInfos 1s backwards;
+}
+@keyframes retraitInfos {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+/* Animation du bouton rejouer */
+.tournerBouton {
+    animation: animBouton 1.5s  1s ease-out forwards;
+}
+@keyframes animBouton {
+    from {
+        opacity: 0;
+        scale: 0;
+        translate: 0 -100px;
+        rotate: 0turn;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+        translate: 0;
+        rotate: 2turn;
+    }
+}
+/* Transition des questions vers l'outro */
+.finTransition {
+    animation: transitionEntreQuestionEtFin 1s;
+}
+@keyframes transitionEntreQuestionEtFin {
+    from {
+        translate: 0;
+    }
+    80% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;;
+        translate: 0 -30vh;
+    }
+}
+/* Transition de l'outro depuis la queston */
+.outroTransition {
+    animation: transitionDepuisQuestionFin 1s;
+}
+@keyframes transitionDepuisQuestionFin {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* Déplacement de la div colorée pour adoucir le changement de couleur */
+.divColore {
+    animation: adoucirTransition 0.1s forwards;
+}
+@keyframes adoucirTransition {
+    from {
+        translate: 0;
+        height: 100vh;
+    }
+    to {
+        translate: 0 -30vh;
+        height: 130vh;
+    }
+}
